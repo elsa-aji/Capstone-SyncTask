@@ -1,0 +1,34 @@
+### 1. Register User
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "testuser@gmail.com",
+  "password": "password123",
+  "role": "Member"
+}
+
+### 2. Login User
+# @name loginRequest
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@gmail.com",
+  "password": "password123"
+}
+
+### 3. Create a New Task
+POST http://localhost:5000/api/tasks
+Content-Type: application/json
+Authorization: Bearer {{loginRequest.response.body.token}}
+
+{
+  "title": "Finish MERN Capstone Project",
+  "description": "Complete backend routes and test with REST client"
+}
+
+### 4. Get All Tasks
+GET http://localhost:5000/api/tasks
+Authorization: Bearer {{loginRequest.response.body.token}}
